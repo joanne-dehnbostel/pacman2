@@ -1,7 +1,7 @@
 let pos = 0;
 const pacArray = [
-  ['./PacMan1.png', './PacMan2.png'],
-  ['./PacMan3.png', './PacMan4.png'],
+  ['.PacMan1.png', '.PacMan2.png'],
+  ['.PacMan3.png', '.PacMan4.png'],
 ];
 let direction = 0;
 const pacMen = []; // This array holds all the pacmen
@@ -24,18 +24,13 @@ function makePac() {
   let game = document.getElementById('game');
   let newimg = document.createElement('img');
   newimg.style.position = 'absolute';
-  newimg.src = './images/PacMan1.png';
+  newimg.src = '.PacMan1.png';
   newimg.width = 100;
 
-  // position is set here
-//newimg.style.position = "absolute";
-//newimg.src = "./images/PacMan1.png";
-//newimg.width = 100;
+ 
 newimg.style.left = position.x;
 newimg.style.top = position.y;
-
-
-  // adds new Child image to game
+ // adds new Child image to game
   game.appendChild(newimg);
 
   // returns details in an object
@@ -49,31 +44,23 @@ newimg.style.top = position.y;
 function update() {
   // loop over pacmen array and move each one and move image in DOM
   pacMen.forEach((item) => {
+   
+    
     checkCollisions(item);
     item.position.x += item.velocity.x;
     item.position.y += item.velocity.y;
 
     item.newimg.style.left = item.position.x;
     item.newimg.style.top = item.position.y;
+ 
   });
+  
   setTimeout(update, 20);
 }
 
-//function checkCollisions(item) {
-  // detects collision with all walls and make pacman bounce
-  //if(
-    //item.position.x + item.velocity.x + item.newimg.width > window.innerWidth ||
-    //item.position.x + item.velocity.x <0
- // )
- // item.velocity.x = -item.velocity.x;
-//if (
- // item.position.y + item.velocity.y + item.newimg.height > window.innerHeight ||
-  //item.position.y + item.velocity.y <0
-//)
-//item.velocity.y = -item.velocity.y;
-//}
-
-
+function checkCollisions(item) {
+  // detects collision with all walls and makes pacman bounce
+  
  if (
     item.position.x + item.velocity.x + item.newimg.width > window.innerWidth ||
     item.position.x + item.velocity.x < 0
