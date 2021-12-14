@@ -27,18 +27,18 @@ function makePac() {
   newimg.src = './images/PacMan1.png';
   newimg.width = 100;
 
-  // TODO: set position here
-newimg.style.position = "absolute";
-newimg.src = "./images/PacMan1.png";
-newimg.width = 100;
+  // position is set here
+//newimg.style.position = "absolute";
+//newimg.src = "./images/PacMan1.png";
+//newimg.width = 100;
 newimg.style.left = position.x;
 newimg.style.top = position.y;
 
 
-  // TODO add new Child image to game
+  // adds new Child image to game
   game.appendChild(newimg);
 
-  // return details in an object
+  // returns details in an object
   return {
     position,
     velocity,
@@ -59,22 +59,50 @@ function update() {
   setTimeout(update, 20);
 }
 
-function checkCollisions(item) {
-  // TODO: detect collision with all walls and make pacman bounce
-  if(
+//function checkCollisions(item) {
+  // detects collision with all walls and make pacman bounce
+  //if(
+    //item.position.x + item.velocity.x + item.newimg.width > window.innerWidth ||
+    //item.position.x + item.velocity.x <0
+ // )
+ // item.velocity.x = -item.velocity.x;
+//if (
+ // item.position.y + item.velocity.y + item.newimg.height > window.innerHeight ||
+  //item.position.y + item.velocity.y <0
+//)
+//item.velocity.y = -item.velocity.y;
+//}
+
+
+ if (
     item.position.x + item.velocity.x + item.newimg.width > window.innerWidth ||
-    item.position.x + item.velocity.x <0
+    item.position.x + item.velocity.x < 0
   )
-  item.velocity.x = -item.velocity.x;
-if (
-  item.position.y + item.velocity.y + item.newimg.height > window.innerHeight ||
-  item.position.y + item.velocity.y <0
-)
-item.velocity.y = -item.velocity.y;
+    item.velocity.x = -item.velocity.x;
+
+    if ((item.newimg.src = pacArray[0][0])&&(item.velocity.x < 0)) {
+      item.newimg.src = pacArray[1][0];
+  }
+  else if ((item.newimg.src = pacArray[0][1])&&(item.velocity.x < 0)) {
+      item.newimg.src = pacArray[1][1];
+  }
+  else if ((item.newimg.src = pacArray[1][0])&&(item.velocity.x > 0)) {
+      item.newimg.src = pacArray[0][0];
+  }
+  else if ((item.newimg.src = pacArray[1][1])&&(item.velocity.x > 0)) {
+      item.newimg.src = pacArray[0][1];
+  }
+
+  if (
+    item.position.y + item.velocity.y + item.newimg.height > window.innerHeight ||
+    item.position.y + item.velocity.y < 0
+  )
+    item.velocity.y = -item.velocity.y;
 }
 
+
 function makeOne() {
-  pacMen.push(makePac()); // add a new PacMan
+  pacMen.push(makePac()); // adds a new PacMan
 }
 
 //don't change this line
